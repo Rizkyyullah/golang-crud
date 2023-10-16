@@ -1,0 +1,37 @@
+{{ template "layout" . }}
+
+{{ define "content" }}
+<div class="container mt-4 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center">List Product</h2>
+      <hr>
+      <a href="/products/add" class="btn btn-primary mb-3">Add Product</a>
+      <table class="table table-bordered text-center">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{ range .products }}
+            <tr>
+              <td>{{ .Name }}</td>
+              <td>{{ .Category.Name }}</td>
+              <td>
+                <div class="d-grid gap-2 text-white">
+                  <a href="/products/detail?id={{ .ID }}" class="btn btn-info">Detail</a>
+                  <a href="/products/edit?id={{ .ID }}" class="btn btn-warning">Edit</a>
+                  <a href="/products/delete?id={{ .ID }}" class="btn btn-danger" onclick="return confirm('Are ypu sure want to delete this product?')">Delete</a>
+                </div>
+              </td>
+            </tr>
+          {{ end }}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{{ end }}

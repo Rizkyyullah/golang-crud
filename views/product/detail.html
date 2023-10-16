@@ -1,0 +1,44 @@
+{{ template "layout" . }}
+
+{{ define "content" }}
+<div class="container mt-4 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center">Detail Product</h2>
+      <hr>
+      <form action="/products" method="POST">
+        <fieldset disabled>
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" name="name" id="name" value="{{  .product.Name }}" autocomplete="off">
+          </div>
+          <div class="mb-3">
+            <label for="stock" class="form-label">Category</label>
+            <input type="text" class="form-control" name="stock" id="stock" value="{{  .product.Category.Name }}" autocomplete="off">
+          </div>
+          <div class="mb-3">
+            <label for="stock" class="form-label">Stock</label>
+            <input type="number" class="form-control" name="stock" id="stock" value="{{  .product.Stock }}" autocomplete="off">
+          </div>
+          <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" class="form-control" name="price" id="price" value="{{  .product.Price }}" autocomplete="off">
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" class="form-control" name="description" id="description" value="{{  .product.Description }}" autocomplete="off">
+          </div>
+          <div class="mb-3">
+            <label for="updated_at" class="form-label">Last Update</label>
+            <input type="text" class="form-control" name="updated_at" id="updated_at" value="{{  .product.UpdatedAt }}" autocomplete="off">
+          </div>
+        </fieldset>
+        <hr>
+        <div class="gap-2 d-flex justify-content-end">
+          <a href="/products" class="btn btn-secondary">Back</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{{ end }}

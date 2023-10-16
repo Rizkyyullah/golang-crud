@@ -1,0 +1,50 @@
+{{ template "layout" . }}
+
+{{ define "content" }}
+<div class="container mt-4 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center">Edit Product</h2>
+      <hr>
+      {{ if.error }}
+        <div class="alert alert-danger text-center">
+          {{ .error }}
+        </div>
+      {{ end }}
+      <form action="/products/edit" method="POST">
+        <input type="hidden" name="id" value="{{ .product.ID }}">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" name="name" id="name" value="{{ .product.Name }}" autocomplete="off">
+        </div>
+        <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <select class="form-select" id="category" name="category">
+            {{ $categoryId := .product.Category.ID }}
+            {{ range .categories }}
+              <option value="{{ .ID }}" {{ if eq .ID $categoryId }} selected {{ end }}>{{ .Name }}</option>
+            {{ end }}
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="stock" class="form-label">Stock</label>
+          <input type="text" class="form-control" name="stock" id="stock" value="{{ .product.Stock }}" autocomplete="off">
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">Price</label>
+          <input type="text" class="form-control" name="price" id="price" value="{{ .product.Price }}" autocomplete="off">
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <input type="text" class="form-control" name="description" id="description" value="{{ .product.Description }}" autocomplete="off">
+        </div>
+        <hr>
+        <div class="gap-2 d-flex justify-content-end">
+          <a href="/products" class="btn btn-secondary">Back</a>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{{ end }}
